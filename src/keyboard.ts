@@ -35,23 +35,23 @@ export default class Keyboard {
     this.onNextKeyPressHandler = handler;
   }
 
-  isKeyPressed(keyCode: number) {
+  isKeyPressed(keyCode: number): boolean {
     return this.keysPressed[keyCode];
   }
 
-  dispose() {
+  dispose(): void {
     window.removeEventListener('keydown', this.onKeyDownBinding, false);
     window.removeEventListener('keyup', this.onKeyUpBinding, false);
   }
 
-  private bindEvents() {
+  private bindEvents(): void {
     this.onKeyDownBinding = this.onKeyDown.bind(this);
     this.onKeyUpBinding = this.onKeyUp.bind(this);
     window.addEventListener('keydown', this.onKeyDownBinding, false);
     window.addEventListener('keyup', this.onKeyUpBinding, false);
   }
 
-  private onKeyDown(event: KeyboardEvent) {
+  private onKeyDown(event: KeyboardEvent): void {
     const key = KEYMAP[event.keyCode];
 
     if (key) {
@@ -65,7 +65,7 @@ export default class Keyboard {
     }
   }
 
-  private onKeyUp(event: KeyboardEvent) {
+  private onKeyUp(event: KeyboardEvent): void {
     const key = KEYMAP[event.keyCode];
     if (key) {
       this.keysPressed[key] = false;

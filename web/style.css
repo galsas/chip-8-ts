@@ -12,14 +12,6 @@ canvas {
     background-color: black;
 }
 
-.emulator-container {
-    width: 640px;
-    display: block;
-    position: relative;
-    top: 150px;
-    margin: 0 auto;
-}
-
 input {
     background-color: #526d96;
     border-radius: 7px;
@@ -30,4 +22,12 @@ button {
     background-color: #a0b2ce;
     border-radius: 7px;
     border: 1px solid;
+}
+
+.emulator-container {
+    width: 640px;
+    display: block;
+    position: relative;
+    top: 150px;
+    margin: 0 auto;
 }

@@ -46,16 +46,16 @@ export default class Chip8Emulator {
     }
   }
 
-  setVolume(volume: number) {
+  setVolume(volume: number): void {
     this.speaker.setVolume(volume);
   }
 
-  dispose() {
+  dispose(): void {
     this.keyboard.dispose();
     cancelAnimationFrame(this.loop);
   }
 
-  private step(_time: number) {
+  private step(_time: number): void {
     this.now = Date.now();
     this.elapsed = this.now - this.then;
 
