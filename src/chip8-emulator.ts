@@ -16,10 +16,6 @@ export default class Chip8Emulator {
 
   private fps = 60;
   private fpsInterval: number;
-  private startTime: number;
-  private now: number;
-  private then: number;
-  private elapsed: number;
   private loop: number;
 
   private readonly stepBinded: FrameRequestCallback;
@@ -35,8 +31,6 @@ export default class Chip8Emulator {
 
   async init(romUrl: string) {
     this.fpsInterval = 1000 / this.fps;
-    this.then = Date.now();
-    this.startTime = this.then;
 
     const romData = await Chip8Emulator.loadRom(romUrl);
 
@@ -55,11 +49,8 @@ export default class Chip8Emulator {
     cancelAnimationFrame(this.loop);
   }
 
-  private step(_time: number): void {
-    this.now = Date.now();
-    this.elapsed = this.now - this.then;
-
-    if (this.elapsed > this.fpsInterval) {
+  private step(time: number): void {
+    if (time > this.fpsInterval) {
       this.cpu.cycleTick();
     }
 
