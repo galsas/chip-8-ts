@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Chip 8 emulator</title>
+    <link rel="stylesheet" href="style.css">
+    <script type="module">
+      import Chip8Emulator from '../dist/chip8-emulator.js';
+
+      let muted = false;
+      let chip8Emulator;
+
+      window.onload = () => {
+        document.querySelector('#load-btn').addEventListener('click', () => {
+          loadGame(document.querySelector('#rom-url').value);
+        });
+
+        document.querySelector('#mute-btn').onclick = () => {
+          if (chip8Emulator) chip8Emulator.setVolume((muted ^= true) ? 0 : 100);
+        }
+      }
+
+      async function loadGame(rom) {
+        const config = {
+          rendererConfig: {
+            scale: 10,
+            fillColor: '#52964f',
+            cols: 64,
+            rows: 32,
+            canvas: document.querySelector('#canvas')
+          }
+        }
+
+        if (chip8Emulator) chip8Emulator.dispose();
+
+        chip8Emulator = new Chip8Emulator(config);
+        await chip8Emulator.init(rom);
+      }
+    </script>
+  </head>
+  <body>
+    <div class="emulator-container">
+      <canvas id="canvas"></canvas>
+      <div class="controls">
+        <label for="rom-url">Rom URL: </label>
+        <input type="text" id="rom-url" value="./roms/Pong.ch8"/>
+        <button id="load-btn">Load</button>
+        <button id="mute-btn">Mute sound</button>
+      </div>
+    </div>
+  </body>
+</html>

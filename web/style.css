@@ -1,0 +1,33 @@
+
+body {
+    background-color: #0a3b84;
+    font-family: Arial, serif;
+}
+
+canvas {
+    width: 640px;
+    height: 320px;
+    border: 4px solid #4696a2;
+    border-radius: 5px;
+    background-color: black;
+}
+
+.emulator-container {
+    width: 640px;
+    display: block;
+    position: relative;
+    top: 150px;
+    margin: 0 auto;
+}
+
+input {
+    background-color: #526d96;
+    border-radius: 7px;
+    border: 1px solid;
+}
+
+button {
+    background-color: #a0b2ce;
+    border-radius: 7px;
+    border: 1px solid;
+}
